@@ -1,0 +1,43 @@
+package mcApp;
+
+import java.net.MalformedURLException;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import loginpageobjects.LoginPages;
+import mcpageobjects.McLoanPurchasePage;
+import utilities.DriverType;
+import utilities.ElementManager;
+
+public class McLoanPurchase extends ElementManager {
+	
+	private LoginPages mcloginpage;
+	private McLoanPurchasePage mcloanpurchase;
+	
+	@Parameters({ "browser" })
+	@BeforeClass
+	public void setup(String browser) throws MalformedURLException {
+		driver = getDriver(DriverType.valueOf(browser));
+	}
+
+	@AfterClass
+	public void tearDown() {
+		driver.quit();
+	}
+
+	@Test
+	public void mcLogin()throws Exception {
+		mcloginpage = new LoginPages(driver);
+		mcloginpage.mcLogin();
+		
+	}
+	@Test
+	public void MCcodcreate() throws Exception {
+		mcloanpurchase = new McLoanPurchasePage(driver);
+		mcloanpurchase.loanPurchase();
+		
+	}
+}

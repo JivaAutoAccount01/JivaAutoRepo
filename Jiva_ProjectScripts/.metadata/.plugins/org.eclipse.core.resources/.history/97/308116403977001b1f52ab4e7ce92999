@@ -1,0 +1,127 @@
+package loginpageobjects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Reporter;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.android.nativekey.PressesKey;
+import utilities.ElementManager;
+
+public class LoginPages extends ElementManager {
+	
+	public LoginPages(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	//Jiva Web portal
+	
+	
+	//Magento Login
+	
+	private static final By MUSERNAME = By.id("username");
+	private static final By MPASSWORD = By.id("login");
+	private static final By MLOGIN_BUTTON = By.xpath("//*[@id=\"login-form\"]/fieldset/div[3]/div[1]/button/span");
+	private static final By NEWVERSION_MSG = By.xpath("//button[@class='action-close']");
+	public void magentoLogin() throws Exception {
+		
+		Reporter.log("Magento Login ",true);
+		elementSendKeys(driver, MUSERNAME, "mounika.lunavath@jiva.ag", 10);
+		elementSendKeys(driver, MPASSWORD, "wPzCUEZvgDU9PXBiXDAHhvjp", 10);
+		elementClick(driver, MLOGIN_BUTTON, 10);
+		
+		if(elementAvailability(driver, NEWVERSION_MSG, "Incoming Message", 10)==true) {
+			elementClick(driver,NEWVERSION_MSG,10);	
+			}else {
+				System.out.println("New Version Incoming message is not displayed");
+			}
+	}
+	
+	//FarmerCRM Login
+	
+	private static final By CRMUSERNAME = By.id("mat-input-0");
+	private static final By CRMPASSWORD = By.id("mat-input-1");
+	private static final By CRMLOGIN_BUTTON = By.xpath("//button[@type='submit']");
+	
+	
+	public void farmercrmLogin() throws Exception {
+		
+		Reporter.log("Farmer CRM Login ",true);
+		
+		elementSendKeys(driver, CRMUSERNAME, "mounika.lunavath@jiva.ag", 10);
+		elementSendKeys(driver, CRMPASSWORD, "wPzCUEZvgDU9PXBiXDAHhvjp", 10);
+		elementClick(driver, CRMLOGIN_BUTTON, 10);
+	}
+	
+	// Farmer App Login
+	
+	private static final By GOOGLE_BTN = By.id("com.gaiaventure.advisor.qa:id/btn_google");
+	private static final By CONCENT_BTN = By.id("com.gaiaventure.advisor.qa:id/btn_consent");
+	private static final By LOGIN_ACCOUNT = By.id("com.google.android.gms:id/account_display_name");
+	private static final By EMAIL_ID = By.xpath("android.widget.EditText");
+	private static final By NXT_BTN = MobileBy.AndroidUIAutomator("text(\"Next\")");
+	private static final By PASSWORD = By.className("android.widget.EditText");
+	
+	public void farmerLogin() throws Exception {
+		
+		Reporter.log("Logging in",true);
+		
+		elementClick(driver,GOOGLE_BTN,10);	
+		elementClick(driver,CONCENT_BTN,10);	
+		Thread.sleep(10000);
+		farmerLogIn(LOGIN_ACCOUNT,EMAIL_ID,NXT_BTN,PASSWORD);
+	}
+		
+	
+	//MC app Login
+	private static final By NEXT_BUTTON = By.id("com.gaiaventure.mc:id/tvNextButton");
+	private static final By CONSENT_BUTTON = By.id("com.gaiaventure.mc:id/btn_consent");
+	private static final By PHONENUMBER_FIELD = By.id("com.gaiaventure.mc:id/editMobileNumber");
+	private static final By PH_NEXTBUTTON = By.id("com.gaiaventure.mc:id/btn_next");
+	private static final By CHROME_TERMS = By.id("com.android.chrome:id/terms_accept");
+	private static final By CHROME_NXT = By.id("com.android.chrome:id/next_button");
+	private static final By CHROME_NOTHANKS = By.id("com.android.chrome:id/negative_button");
+	private static final By BROWSER_CHROME = By.xpath("//android.widget.TextView[contains(@text, 'Chrome')]");
+	private static final By CHROME_ALWAYS = By.id("android:id/button_always");
+	private static final By CAPTCHA_CLOSE = By.id("com.android.chrome:id/close_button");
+	private static final By OTP_FIELD = By.id("com.gaiaventure.mc:id/editTextNumber");
+	private static final By OTP_NXT_BTN = By.id("com.gaiaventure.mc:id/btn_next");
+	
+	
+	public void mcLogin() throws Exception {
+		
+		Reporter.log("Logging in",true);
+		
+		elementClick(driver, NEXT_BUTTON, 60);
+		elementClick(driver,CONSENT_BUTTON,60);
+		elementSendKeys(driver, PHONENUMBER_FIELD, "+628114123245", 10);
+		elementClick(driver, PH_NEXTBUTTON, 10);
+		
+		if(elementAvailability(driver, CHROME_TERMS, "Accept", 10)==true) {
+			elementClick(driver,CHROME_TERMS,10);	
+			elementClick(driver,CHROME_NXT,10);	
+			elementClick(driver,CHROME_NOTHANKS,10);
+					
+		}
+		
+		if(elementAvailability(driver, BROWSER_CHROME, "Chrome", 10)==true) {
+			elementClick(driver,BROWSER_CHROME,10);	
+			elementClick(driver,CHROME_ALWAYS,10);	
+			
+		}
+		if(elementAvailability(driver, CAPTCHA_CLOSE, "Captcha", 15)==true) {
+			elementClick(driver,CAPTCHA_CLOSE,20);
+		}
+		
+		elementSendKeys(driver, OTP_FIELD, "123456", 5);
+		elementClick(driver, OTP_NXT_BTN, 10);
+		
+		}
+	
+
+}
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="E2ERegressionSuite">
+
+	<suite-files>
+
+		<suite-file path="src/test/resources/RegressionSuites/INPUTCODRegressionSuite.xml" />
+		<suite-file path="src/test/resources/RegressionSuites/INPUTLoanRegressionSuite.xml" />
+		<suite-file path="src/test/resources/RegressionSuites/LoanKYCRegressionSuite.xml" />
+		<suite-file path="src/test/resources/RegressionSuites/HarvestRegressionSuite.xml" />
+
+	</suite-files>
+</suite>

@@ -1,0 +1,44 @@
+package webapplications;
+
+import java.net.MalformedURLException;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+
+import loginpageobjects.LoginPages;
+import utilities.DriverType;
+import utilities.ElementManager;
+import webpageobjects.CrmloanApprovalPage;
+
+
+public class CrmloanApproval extends ElementManager {
+	
+	private LoginPages farmercrmlogin;
+	private CrmloanApprovalPage crmloanapprovalpage;
+	
+	
+	@Parameters({ "browser" })
+	@BeforeClass
+	public void setup(String browser) throws MalformedURLException {
+		driver = getDriver(DriverType.valueOf(browser));
+	}
+
+	@AfterClass
+	public void tearDown() {
+		driver.quit();
+	}
+
+	@org.testng.annotations.Test
+	public void crmLogin()throws Exception {
+		farmercrmlogin = new LoginPages(driver);
+		farmercrmlogin.farmercrmLogin();
+		
+	}
+	@org.testng.annotations.Test
+	public void crmloanApproval() throws Exception {
+		crmloanapprovalpage = new CrmloanApprovalPage(driver);
+		crmloanapprovalpage.loanApproval();
+		
+	}
+}

@@ -1,0 +1,14 @@
+# This is base url for starting the application
+ JLURL = JL-app-qabuild-release1_2_5_version.apk
+ 
+ #Magento URL
+ MagentoURL = https://integration-5ojmyuq-6mzsruihbymuc.ap-3.magentosite.cloud/admin_b36zcpjiva/admin/index/index/key/e8c9579f41eacc9995f9ebdf05e8dc5f5eaa06491e40d0bbba15db7bba756a2e/
+ 
+ MCURL = Mc-app-qa-release-1.0.2.17.apk
+ 
+ FURL = farmer_app_qa.apk
+ 
+ testdatapath =./TestData/WE_TestDataFile.xlsx
+ 
+# The timeout value for finding the element in the application is configured here
+timeout=60

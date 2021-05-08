@@ -1,0 +1,58 @@
+package jLTests;
+
+import java.net.MalformedURLException;
+
+import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import excelClasses.Menu;
+import excelClasses.MenuFactory;
+import excelClasses.module1AppMenu;
+import jL_Pageobjects.RegisterPage;
+import utilities.DriverType;
+import utilities.ElementManager;
+
+public class RegisterTest extends ElementManager {
+	
+	private RegisterPage registerPage;
+	
+	@Parameters({ "browser" })
+	@BeforeMethod
+	public void setup(String browser) throws MalformedURLException {
+		driver = getDriver(DriverType.valueOf(browser));
+	}
+
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
+	}
+	
+	@Test (priority = 1)
+	public void registerMC() throws Exception {
+		registerPage = new RegisterPage(driver);
+		Reporter.log("Add new MC",true);
+		registerPage.createMC();
+		
+		
+	}
+	
+	
+	  @Test (priority = 2) public void reassignRejTasks() throws Exception {
+	  registerPage = new RegisterPage(driver);
+	  Reporter.log("ReAssign Rejected Tasks",true);
+	  registerPage.reassignRejectedTask(); }
+	  
+	  @Test (priority = 3) public void reassignOverTasks() throws Exception {
+	  registerPage = new RegisterPage(driver);
+	  Reporter.log("ReAssign Overdue Tasks",true);
+	  registerPage.reassignOverdueTask();
+	  
+	  }
+	 
+}

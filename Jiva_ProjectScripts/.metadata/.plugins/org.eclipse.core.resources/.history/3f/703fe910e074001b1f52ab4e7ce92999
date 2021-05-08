@@ -1,0 +1,55 @@
+package jLTests;
+
+import java.net.MalformedURLException;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import excelClasses.Menu;
+import excelClasses.MenuFactory;
+import excelClasses.module1AppMenu;
+import jL_Pageobjects.RegisterPage;
+import utilities.DriverType;
+import utilities.ElementManager;
+
+public class RegisterTest extends ElementManager {
+	
+	private RegisterPage registerPage;
+	
+	@Parameters({ "browser" })
+	@BeforeClass
+	public void setup(String browser) throws MalformedURLException {
+		driver = getDriver(DriverType.valueOf(browser));
+	}
+
+	@AfterClass
+	public void tearDown() {
+		driver.quit();
+	}
+
+	@Test
+	public void registerMC() throws Exception {
+		registerPage = new RegisterPage(driver);
+		Menu menu = MenuFactory.getModule1MenuByTitle(module1AppMenu.JLUSER);
+		elementClick(driver, registerPage.NEXT_BUTTON, 60);
+		elementSendKeys(driver, PHONENUMBER_FIELD, menu.getPassword(), 10);
+		registerPage.createMC(menu);
+		
+		
+	}
+	
+	/*
+	 * @Test public void reassignRejTasks() throws Exception {
+	 * 
+	 * //registerPage.reassignRejectedTask();
+	 * 
+	 * }
+	 * 
+	 * @Test public void reassignOverTasks() throws Exception { registerPage = new
+	 * RegisterPage(driver); registerPage.reassignOverdueTask();
+	 * 
+	 * }
+	 */
+}

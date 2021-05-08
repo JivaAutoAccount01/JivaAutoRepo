@@ -1,0 +1,45 @@
+package utilities;
+
+import java.io.IOException;
+import java.text.ParseException;
+
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.BeforeMethod;
+
+import jL_Pageobjects.RegisterPage;
+import mcpageobjects.McCodCreatePage;
+
+public class BaseSteps_android extends ElementManager {
+
+
+
+	protected	Actions action;
+	
+	
+	
+	
+	//commom
+	protected McCodCreatePage mccodcreate;
+	protected RegisterPage jlRegisterPage;
+	
+	
+@BeforeMethod
+	
+	public void beforeMethod() throws IOException, ParseException, InterruptedException{
+		
+		
+			setUpPageObjects();
+			
+	}
+	
+	public void setUpPageObjects() throws IOException, ParseException, InterruptedException {
+		
+		
+		mccodcreate = PageFactory.initElements(driver, McCodCreatePage.class);
+		jlRegisterPage = PageFactory.initElements(driver, RegisterPage.class );
+		
+		
+			}
+
+}

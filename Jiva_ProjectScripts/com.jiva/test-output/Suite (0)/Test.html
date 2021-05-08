@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>TestNG:  Test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>2/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Mar 12 17:33:17 IST 2021</td>
+</tr>
+<tr><td>Total time:</td><td>87 seconds (87015 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='webapplications.MagentoShipment.magentoShipment()'><b>magentoShipment</b><br>Test class: webapplications.MagentoShipment<br/>
+<a href="#Output-1266224518" onClick='toggleBox("Output-1266224518", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1266224518" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1266224518">
+Magento COD Shipment is Started<br/>
+***Web element = 'SALES' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //a[@onclick='return false;']] in By.xpath: //a[@onclick='return false;']<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //*[@id="menu-magento-sales-sales"]/div/ul/li/ul/li/div/ul/li[1]/a] in By.xpath: //*[@id="menu-magento-sales-sales"]/div/ul/li/ul/li/div/ul/li[1]/a<br/>
+***Web element = 'Clear All' is identified successfully***<br/>
+***Web element = 'Clear all' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //button[@class='action-tertiary action-clear']] in By.xpath: //button[@class='action-tertiary action-clear']<br/>
+***Web element = 'By.xpath: //*[@id="fulltext"]' is identified successfully***<br/>
+***Entered Autotest farm02. in By.xpath: //*[@id="fulltext"]***<br/>
+***Web element = 'Filters' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //button[@class='action-default']] in By.xpath: //button[@class='action-default']<br/>
+***Web element = 'Apply Filters' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //span[text()='Apply Filters']] in By.xpath: //span[text()='Apply Filters']<br/>
+***Web element = 'View' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //a[text()='View']] in By.xpath: //a[text()='View']<br/>
+***Web element = 'Ship' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> id: order_ship] in By.id: order_ship<br/>
+***Web element = 'Submit Shipment' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //button[@title='Submit Shipment']] in By.xpath: //button[@title='Submit Shipment']<br/>
+***Web element = 'mounika.lunavath@jiva.ag' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //span[@class='admin-user-account-text']] in By.xpath: //span[@class='admin-user-account-text']<br/>
+***Web element = 'Sign Out' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //a[@class='account-signout']] in By.xpath: //a[@class='account-signout']<br/>
+Magento Shipment is Completed<br/>
+</div>
+</td>
+<td></td>
+<td>61</td>
+<td>webapplications.MagentoShipment@32502377</td></tr>
+<tr>
+<td title='webapplications.MagentoShipment.mgentoLogin()'><b>mgentoLogin</b><br>Test class: webapplications.MagentoShipment<br/>
+<a href="#Output-238169801" onClick='toggleBox("Output-238169801", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-238169801" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-238169801">
+Magento Login <br/>
+***Web element = 'By.id: username' is identified successfully***<br/>
+***Entered mounika.lunavath@jiva.ag in By.id: username***<br/>
+***Web element = 'By.id: login' is identified successfully***<br/>
+***Entered wPzCUEZvgDU9PXBiXDAHhvjp in By.id: login***<br/>
+***Web element = 'Sign in' is identified and clicked***<br/>
+ Clicked [[ChromeDriver: chrome on WINDOWS (42d83ef636bce0a17069e5b618e7fff1)] -> xpath: //*[@id="login-form"]/fieldset/div[3]/div[1]/button/span] in By.xpath: //*[@id="login-form"]/fieldset/div[3]/div[1]/button/span<br/>
+TIMEOUT EXCEPTION element does not exist after waiting 10 seconds - Incoming Message<br/>
+_____Web element = 'Incoming Message' is not identified____<br/>
+**********************************************************<br/>
+</div>
+</td>
+<td></td>
+<td>15</td>
+<td>webapplications.MagentoShipment@32502377</td></tr>
+</table><p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+package webapplications;
+
+import java.net.MalformedURLException;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+
+import loginpageobjects.LoginPages;
+import utilities.DriverType;
+import utilities.ElementManager;
+import webpageobjects.MagentoLoanPage;
+
+public class MagentoLoanProcess extends ElementManager {
+	
+	private LoginPages magentologinpage;
+	private MagentoLoanPage magentoloanpage;
+	
+	
+	@Parameters({ "browser" })
+	@BeforeClass
+	public void setup(String browser) throws MalformedURLException {
+		driver = getDriver(DriverType.valueOf(browser));
+	}
+
+	@AfterClass
+	public void tearDown() {
+		driver.quit();
+	}
+
+	@org.testng.annotations.Test(priority = 1)
+	public void mgentoLogin()throws Exception {
+		magentologinpage = new LoginPages(driver);
+		magentologinpage.magentoLogin();
+		
+	}
+	@org.testng.annotations.Test(priority = 2)
+	public void magentoLoanprocess() throws Exception {
+		magentoloanpage = new MagentoLoanPage(driver);
+		magentoloanpage.magentoLoanSubmit();
+		
+	}
+}
+	

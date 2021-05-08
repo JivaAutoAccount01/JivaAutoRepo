@@ -1,0 +1,342 @@
+package utilities;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
+
+import excelClasses.ExcelUtils;
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
+
+public class ElementManager extends DriverManager {
+
+	private WebDriverWait wait;
+	private WebElement element;
+	private Actions actionBuilder;
+
+	public WebDriver driver = null;
+	AndroidDriver adriver;
+	
+	static ExcelUtils excelUtils = new ExcelUtils();
+	static String excelFilePath = EnvironmentManager.getExcelPath(TESTDATAPATH_PROPERTY);
+
+	public void getExcelData(String sheetName,String phNo) throws IOException {
+		excelUtils.setExcelFile(excelFilePath, sheetName);
+		for (int i = 0; i <= excelUtils.getRowCountInSheet(); i++) {
+			phNo = excelUtils.getCellData(i, 0);
+			
+		}
+	}
+	
+	public void elementClick(WebDriver driver, By byType, long explicittime) {
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.elementToBeClickable(byType)) != null) {
+				element = driver.findElement(byType);
+				if (element.isDisplayed() && element.isEnabled()) {
+					TestLogger.elementClickIdentifier(element.getText());
+					element.click();
+				}
+			}
+		} catch (Exception e) {
+			Reporter.log("TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - "
+					+ element.getText(), true);
+			TestLogger.elementIdentifierFail(element.getText());
+			Assert.fail("TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - "
+					+ element.getText());
+		}
+
+	}
+
+	
+	public void elementSendKeys(WebDriver driver, By byType, String value, long explicittime) {
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.elementToBeClickable(byType)) != null) {
+				element = driver.findElement(byType);
+				if (element.isDisplayed() && element.isEnabled()) {
+					element.clear();							
+					element.sendKeys(value);
+					Reporter.log("Entered " + value + " in " + byType,true);
+					TestLogger.elementIdentifier("" + byType);
+				}
+			}
+		} catch (Exception e) {
+			Reporter.log(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType,
+					true);
+			TestLogger.elementIdentifierFail("" + byType);
+			Assert.fail(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType);
+		}
+	}
+
+	
+	public void elementMouseHover(WebDriver driver, By byType, Boolean scroll, long explicittime) {
+
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.elementToBeClickable(byType)) != null) {
+				if (null != driver.findElements(byType)) {
+					element = driver.findElement(byType);
+					if (element.isDisplayed() && element.isEnabled()) {
+						if (scroll) {
+							((JavascriptExecutor) driver)
+									.executeScript("window.scrollTo(0," + element.getLocation().y + ")");
+						}
+						actionBuilder = new Actions(driver);
+						actionBuilder.moveToElement(element).build();
+						actionBuilder.perform();
+						TestLogger.elementSelect("Successfully Mouse hover on element");
+					}
+				}
+			}
+		} catch (Exception e) {
+			Reporter.log(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType,
+					true);
+			TestLogger.elementIdentifierFail("" + byType);
+			Assert.fail(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType);
+		}
+	}
+
+	
+	public String elementGetText(WebDriver driver, By byType, long explicittime) {
+
+		String returnText = null;
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.elementToBeClickable(byType)) != null) {
+				element = driver.findElement(byType);
+				if (element.isDisplayed() && element.isEnabled()) {
+					TestLogger.elementIdentifier(element.getText());
+					returnText = element.getText();
+				}
+			}
+		} catch (Exception e) {
+			Reporter.log(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType,
+					true);
+			TestLogger.elementIdentifierFail(element.getText());
+			Assert.fail(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType);
+		}
+		return returnText;
+	}
+
+	/**
+	 * This method is used to interact with a web element of type input by
+	 * "Capturing the value" using the Selenium WebDriver findElement(By),
+	 * WebDriverWait & GetAttribute("value"). If the web element does not exist
+	 * a screenshot will be taken and a timeout exception will be thrown. This
+	 * method will also log the locator path in the Log4J log file.
+	 * 
+	 * @param driver
+	 *            is the WebDriver object being used for example (Browsers:
+	 *            Chrome, FireFox or IE etc...)
+	 * @param byType
+	 *            is the name of the variable used to store the locator path of
+	 *            the web element to interact with
+	 * @param explicittime
+	 *            Is the time to wait for individual web element to exists
+	 * @return returns a string of text equal to the value in the input box
+	 */
+	public String elementGetValue(WebDriver driver, By byType, long explicittime) {
+
+		String returnText = null;
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(byType)) != null) {
+				element = driver.findElement(byType);
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0," + element.getLocation().y + ")");
+				returnText = element.getAttribute("value");
+			}
+		} catch (Exception e) {
+			Reporter.log(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType,
+					true);
+			TestLogger.elementIdentifierFail("" + byType);
+			Assert.fail(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType);
+		}
+		return returnText;
+	}
+
+	
+	public void elementSelect(WebDriver driver, By byType, String optionValue, long explicittime) {
+
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.visibilityOfElementLocated(byType)) != null) {
+				element = driver.findElement(byType);
+				new Select(element).selectByVisibleText(optionValue);
+			} else {
+
+			}
+		} catch (Exception e) {
+			Reporter.log("TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - "
+					+ optionValue, true);
+
+			Assert.fail(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + byType);
+		}
+	}
+
+		public boolean elementAvailability(WebDriver driver, By byType, String value, long explicittime) {
+
+		boolean elementIdentifier = false;
+		try {
+			wait = new WebDriverWait(driver, explicittime);
+			if (wait.until(ExpectedConditions.elementToBeClickable(byType)) != null) {
+				element = driver.findElement(byType);
+				if (element.isDisplayed()) {
+					elementIdentifier = true;
+					TestLogger.elementIdentifier(value);
+				} else {
+					elementIdentifier = false;
+					TestLogger.elementIdentifierFail("" + value);
+				}
+			}
+		} catch (Exception e) {
+			Reporter.log(
+					"TIMEOUT EXCEPTION element does not exist after waiting " + explicittime + " seconds - " + value,
+					true);
+			TestLogger.elementIdentifierFail("" + value);
+			
+		}
+		return elementIdentifier;
+	}
+
+		public void scrollAndClick(String visibleText) {
+			
+			WebElement element = driver.findElement(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+							+ visibleText + "\").instance(0))"));
+			//Perform the action on the element
+			element.click();
+			
+			
+			/*
+			 * adriver.findElementByAndroidUIAutomator(
+			 * "new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+			 * + visibleText + "\").instance(0))") .click();
+			 */
+			Reporter.log("Scrolling page", true);
+
+		}
+		
+		public boolean addedMC(String MCname) throws InterruptedException {
+
+			boolean  addedMC = false;
+
+			
+			List<WebElement> addedMcList = driver.findElements(By.id("txtMcName"));
+			for (int i = 0; i < addedMcList.size(); i++) {
+				String list = addedMcList.get(i).getText();
+				if (list.contains(MCname)) {
+					addedMC = true;
+					Reporter.log(MCname + " MC is available",true);
+					break;
+
+				} else {
+					addedMC = false;
+					
+				}
+
+			}
+			return  addedMC;
+		}
+		
+		public void clickFirstElement() throws InterruptedException {
+			Thread.sleep(5000);
+			List<WebElement> options = driver.findElements(By.id("com.gaiaventure.jl:id/txtMcName"));
+			int listSize = options.size();
+			if (listSize <= 0) {
+				Reporter.log("List is Empty . Unable to proceed", true);
+				driver.quit();
+				
+			} else {
+				options.get(0).click();
+
+			}
+
+		}
+		
+		public boolean scrollandCheck(String name) {
+			
+			boolean  addedMC = false;
+			WebElement element = driver.findElement(MobileBy.AndroidUIAutomator(
+					"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""
+							+ name + "\").instance(0))"));
+			
+			if(element.isDisplayed()) {
+				addedMC = true;
+				Reporter.log(name + " MC is available",true);
+				
+			}else {
+				addedMC = false;
+			}
+			return addedMC;
+		}
+		
+		public void sleep(long millisecs) {
+			try {
+				Thread.sleep(millisecs);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void farmerLogIn(By LOGIN_ACCOUNT, By EMAIL_ID, By NXT_BTN, By PASSWORD) {
+
+			try {
+
+				if (elementAvailability(driver, LOGIN_ACCOUNT, "Account", 5) == true) {
+
+					System.out.println("Logged In Account available");
+					elementClick(driver, LOGIN_ACCOUNT, 5);
+
+				} else {
+					System.out.println("Logged In Account Unavailable");
+				}
+
+				if (elementAvailability(driver, EMAIL_ID, "EMail", 5) == true) {
+					elementSendKeys(driver, EMAIL_ID, "autotestfarm01", 10);
+
+					if (elementAvailability(driver, NXT_BTN, "Next", 5) == true) {
+						elementClick(driver, NXT_BTN, 5);
+					} else {
+						System.out.println("Next Button Unavailable");
+						fnextTAB();
+						Thread.sleep(5000);
+					}
+
+					if (elementAvailability(driver, PASSWORD, "Password", 5) == true) {
+						elementSendKeys(driver, PASSWORD, "AutoTF@01", 5);
+						((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+						Thread.sleep(5000);
+						fiagreeTAB();
+					}
+
+				} else {
+					System.out.println("User may alreday Logged In");
+				}
+			} catch (Exception e) {
+				Reporter.log("TIMEOUT EXCEPTION Log In is not done", true);
+				TestLogger.elementIdentifierFail("");
+
+			}
+		}
+
+	}

@@ -1,0 +1,20 @@
+package jLTests;
+
+import org.testng.annotations.Test;
+
+import utilities.BaseSteps_android;
+
+public class RegisterTest_Pagefactory extends BaseSteps_android {
+	
+	
+
+	@Test
+	public void registerMC() throws Exception {
+		
+		
+		
+		
+	}
+	
+	
+}

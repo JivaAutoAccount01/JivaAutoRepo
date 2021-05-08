@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="HarvestFlowRegressionSuite">
+
+	<suite-files>
+	
+			<suite-file path="src/test/resources/HarvestFlowTestSuites/MCStartHarvestPurchase.xml" />
+			<suite-file path="src/test/resources/HarvestFlowTestSuites/FarmerGetHarvestCode.xml" />
+			<suite-file path="src/test/resources/HarvestFlowTestSuites/MCCompleteHarvestFlow.xml" />
+			<suite-file path="src/test/resources/HarvestFlowTestSuites/MCHarvestCommissionChk.xml" />
+			
+		</suite-files>
+</suite>

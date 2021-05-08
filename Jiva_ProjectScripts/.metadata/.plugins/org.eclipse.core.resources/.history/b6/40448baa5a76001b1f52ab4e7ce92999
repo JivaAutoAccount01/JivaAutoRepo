@@ -1,0 +1,203 @@
+package jL_Pageobjects;
+
+import java.io.IOException;
+import java.util.Random;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Reporter;
+
+import excelClasses.ExcelUtils;
+import utilities.ElementManager;
+import utilities.EnvironmentManager;
+
+public class RegisterPage extends ElementManager {
+
+	private static final By NEXT_BUTTON = By.id("btnNext");
+	private static final By PHONENUMBER_FIELD = By.id("editTextphonenumber");
+	private static final By PH_NEXTBUTTON = By.id("llyButtonWithLoaderParent");
+	private static final By OTP_FIELD = By.id("editTextsms");
+	private static final By LANDINGSCREEN = By.xpath("//android.widget.TextView[@text='Jiva Mitras']");
+	private static final By ADDNEWMC = By.id("btn_add_new_jiva_mitra");
+	private static final By NAME_FIELD = By.id("edittextname");
+	private static final By COUNTRY_DD = By.id("acTextCountry");
+	private static final By COUNTRY_NAME = By.xpath("//android.widget.TextView[@text='Indonesia']");
+	private static final By MOBILENUMBER = By.id("editTextphonenember");
+	private static final By ADDRESS = By.id("editTextAddress");
+	private static final By PROVINCE_DD = By.id("acTextProvince");
+	private static final By PROVINCE_NAME = By.xpath("//android.widget.TextView[@text='Lampung']");
+	private static final By CITY_DD = By.id("acTextcity");
+	private static final By CITY_NAME = By.xpath("//android.widget.TextView[@text='Lampung tengah']");
+	private static final By DISTRICT_DD = By.id("acSubDistrict");
+	private static final By DISTRICT_NAME = By.xpath("//android.widget.TextView[@text='Kalirejo']");
+	private static final By VILLAGE_DD = By.id("acTextvillage");
+	private static final By VILLAGE_NAME = By.xpath("//android.widget.TextView[@text='Kalidadi']");
+	private static final By BANK_DD = By.id("spinnerBank");
+	private static final By BANK_NAME = By.xpath("//android.widget.TextView[@text='ICICI BANK']");
+	private static final By ACCOUNT_NO = By.id("editTextbank");
+	private static final By DEBT_AMOUNT = By.id("edittextcurrentdebt");
+	private static final By NEXT = By.xpath("//android.widget.TextView[@text='Next']");
+	private static final By ERROR_MESSAGE = By.id("com.gaiaventure.jl:id/snackbar_text");
+	private static final By DIALOGWINDOW = By.id("grant_dialog");
+
+	// Access photos elements
+	private static final By ONLYTHISTIME_TAKEPICTURES = By
+			.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button");
+	private static final By ALLOW_ACCESSPHOTOS = By.id("com.android.permissioncontroller:id/permission_allow_button");
+	private static final By SELECTGALLERY = By.id("com.gaiaventure.jl:id/gallaryclick");
+	private static final By IMAGE = By.id("com.google.android.apps.photos:id/image");
+	// private static final By PHOTONAME =
+	// By.xpath("//android.view.ViewGroup[@content-desc=\"Photo taken on\"]");
+	private static final By PHOTONAME = By
+			.xpath("//android.view.ViewGroup[@content-desc=\"Photo taken on Feb 11, 2021 10:46:41 AM\"]\r\n" + "");
+	private static final By CROPIMAGE = By.id("com.gaiaventure.jl:id/menu_crop");
+	private static final By IMAGE_NEXTBTN = By.id("com.gaiaventure.jl:id/tvDotLoaderText");
+
+	private static final By SUCCESSWINDOW = By.id("title_KTP_info");
+	private static final By SUCCESS_DONEBTN = By.id("com.gaiaventure.jl:id/dialogBtn");
+	private static final By SUCCESSMESSAGE = By.id("titleMitraNameWithTxt");
+	private static final By NOTASK_TAB = By.id("txtTab2");
+	private static final By ADDEDMC_NAMES = By.id("txtMcName");
+
+	// Reassign Tasks Objects
+	private static final By REJECTEDTASK_TAB = By.id("txtTab2");
+	private static final By TASKNAME = By.id("com.gaiaventure.jl:id/txtMcName");
+	private static final By PLACEORDER_BTN = By.id("com.gaiaventure.jl:id/txtStageInfo");
+	private static final By ASSIGN_BTN = By.id("com.gaiaventure.jl:id/btnEditDetails");
+	private static final By MCNAME = By.id("com.gaiaventure.jl:id/tvMcName");
+	private static final By SELECTBUTTON = By.id("com.gaiaventure.jl:id/btnSelect");
+	private static final By MESSSAGE = By.id("com.gaiaventure.jl:id/titleMitraNameWithTxt");
+	private static final By DONE_BUTTON = By.id("com.gaiaventure.jl:id/dialogBtn");
+
+	static ExcelUtils excelUtils = new ExcelUtils();
+	static String excelFilePath = EnvironmentManager.getExcelPath(TESTDATAPATH_PROPERTY);
+
+	Random random = new Random();
+	int x = random.nextInt(500000000);
+	String mobilenumber = "+912" + x;
+
+	// Random name
+	int y = random.nextInt(50);
+	String UserName = "TestingJL" + y;
+
+	public RegisterPage(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public void navigateHome() throws IOException {
+		excelUtils.setExcelFile(excelFilePath, "JL");
+		for (int i = 0; i <= excelUtils.getRowCountInSheet(); i++) {
+			elementClick(driver, NEXT_BUTTON, 60);
+			elementSendKeys(driver, PHONENUMBER_FIELD,excelUtils.getCellData(i, 0), 10);
+			elementClick(driver, PH_NEXTBUTTON, 10);
+			elementSendKeys(driver, OTP_FIELD, "123456", 60);
+			elementClick(driver, PH_NEXTBUTTON, 10);
+		}
+	}
+
+	public void createMC() throws Exception {
+
+		navigateHome();
+		elementClick(driver, LANDINGSCREEN, 30);
+		elementClick(driver, ADDNEWMC, 30);
+		elementSendKeys(driver, NAME_FIELD, UserName, 10);
+		elementClick(driver, COUNTRY_DD, 10);
+		elementClick(driver, COUNTRY_NAME, 10);
+		elementSendKeys(driver, MOBILENUMBER, mobilenumber, 10);
+		elementSendKeys(driver, ADDRESS, "Indonesia", 10);
+
+		elementClick(driver, PROVINCE_DD, 10);
+		elementClick(driver, PROVINCE_NAME, 10);
+
+		elementClick(driver, CITY_DD, 10);
+		elementClick(driver, CITY_NAME, 10);
+		scrollAndClick("Bank");
+
+		elementClick(driver, DISTRICT_DD, 10);
+		elementClick(driver, DISTRICT_NAME, 10);
+
+		elementClick(driver, VILLAGE_DD, 10);
+		elementClick(driver, VILLAGE_NAME, 10);
+		elementClick(driver, BANK_DD, 10);
+		elementClick(driver, BANK_NAME, 10);
+		elementSendKeys(driver, ACCOUNT_NO, "12345678", 10);
+		scrollAndClick("Rp");
+		elementSendKeys(driver, DEBT_AMOUNT, "100", 10);
+		scrollAndClick("Next");
+
+		if (elementAvailability(driver, ERROR_MESSAGE, "ErrorMessage", 10) == false) {
+
+			elementClick(driver, ONLYTHISTIME_TAKEPICTURES, 60);
+			elementClick(driver, ALLOW_ACCESSPHOTOS, 10);
+			elementClick(driver, SELECTGALLERY, 10);
+			elementClick(driver, IMAGE, 10);
+			elementClick(driver, PHOTONAME, 30);
+			elementClick(driver, CROPIMAGE, 10);
+			elementClick(driver, IMAGE_NEXTBTN, 10);
+
+			elementClick(driver, SELECTGALLERY, 30);
+			elementClick(driver, IMAGE, 10);
+			elementClick(driver, PHOTONAME, 10);
+			elementClick(driver, CROPIMAGE, 10);
+			elementClick(driver, IMAGE_NEXTBTN, 10);
+
+			// Upload Profile Photo
+			elementClick(driver, SELECTGALLERY, 30);
+			elementClick(driver, IMAGE, 10);
+			elementClick(driver, PHOTONAME, 10);
+			elementClick(driver, CROPIMAGE, 10);
+			elementClick(driver, IMAGE_NEXTBTN, 10);
+
+			elementGetText(driver, SUCCESSMESSAGE, 10);
+			elementClick(driver, SUCCESS_DONEBTN, 10);
+			elementClick(driver, LANDINGSCREEN, 60);
+			elementClick(driver, NOTASK_TAB, 30);
+
+			/*
+			 * if (addedMC(UserName) == true) { Reporter.log("MC is added successfully",
+			 * true);
+			 * 
+			 * } else { Reporter.log("MC is not added successfully", true);
+			 * Assert.assertFalse(true); }
+			 */
+
+			if (scrollandCheck(UserName) == true) {
+				Reporter.log("MC is added successfully", true);
+
+			} else {
+				Reporter.log("MC is not added successfully", true);
+				Assert.assertFalse(true);
+			}
+		} else {
+			Reporter.log("Sorry, we can’t process your request right now. Please try again, later.", true);
+			Assert.assertFalse(true);
+		}
+	}
+
+	public void reassignRejectedTask() throws InterruptedException, IOException {
+		navigateHome();
+		elementClick(driver, REJECTEDTASK_TAB, 10);
+		clickFirstElement();
+		elementClick(driver, PLACEORDER_BTN, 10);
+		elementClick(driver, ASSIGN_BTN, 10);
+		clickFirstElement();
+		elementClick(driver, MCNAME, 10);
+		elementClick(driver, SELECTBUTTON, 10);
+		elementGetText(driver, MESSSAGE, 10);
+		elementClick(driver, DONE_BUTTON, 10);
+	}
+
+	public void reassignOverdueTask() throws InterruptedException, IOException {
+		navigateHome();
+		clickFirstElement();
+		elementClick(driver, PLACEORDER_BTN, 10);
+		elementClick(driver, ASSIGN_BTN, 10);
+		clickFirstElement();
+		elementClick(driver, MCNAME, 10);
+		elementClick(driver, SELECTBUTTON, 10);
+		elementGetText(driver, MESSSAGE, 10);
+		elementClick(driver, DONE_BUTTON, 10);
+	}
+
+}

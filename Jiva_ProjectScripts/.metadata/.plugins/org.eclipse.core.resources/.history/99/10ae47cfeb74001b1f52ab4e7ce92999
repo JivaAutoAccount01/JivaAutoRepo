@@ -1,0 +1,31 @@
+package jLTests;
+
+import java.net.MalformedURLException;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import excelClasses.Menu;
+import excelClasses.MenuFactory;
+import excelClasses.module1AppMenu;
+import jL_Pageobjects.RegisterPage;
+import utilities.BaseSteps_android;
+import utilities.DriverType;
+import utilities.ElementManager;
+
+public class RegisterTest_Pagefactory extends BaseSteps_android {
+	
+	
+
+	@Test
+	public void registerMC() throws Exception {
+		
+	registerMC();
+		
+		
+	}
+	
+	
+}

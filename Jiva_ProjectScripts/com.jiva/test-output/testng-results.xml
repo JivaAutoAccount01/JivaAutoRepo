@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results retried="1" ignored="0" total="2" passed="0" failed="1" skipped="0">
+  <reporter-output>
+    <line>
+      <![CDATA[FarmerCRM Loan Approval flow is started]]>
+    </line>
+    <line>
+      <![CDATA[*************************** 
+Farmer CRM launched successfully
+URL = https://gaia-venture-qa.firebaseapp.com/inputs-advance-requests/]]>
+    </line>
+  </reporter-output>
+  <suite started-at="2021-04-07T10:28:45 IST" name="Suite" finished-at="2021-04-07T10:28:57 IST" duration-ms="12092">
+    <groups>
+    </groups>
+    <test started-at="2021-04-07T10:28:45 IST" name="Test" finished-at="2021-04-07T10:28:57 IST" duration-ms="12092">
+      <class name="webapptestcases.CrmLoanApproval">
+        <test-method is-config="true" signature="setEnvironmet()[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:07 IST" name="setEnvironmet" finished-at="2021-04-07T10:28:45 IST" duration-ms="38259" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setEnvironmet -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:45 IST" name="setup" finished-at="2021-04-07T10:28:57 IST" duration-ms="11415" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[FARMERCRM]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[FarmerCRM Loan Approval flow is started]]>
+            </line>
+            <line>
+              <![CDATA[*************************** 
+Farmer CRM launched successfully
+URL = https://gaia-venture-qa.firebaseapp.com/inputs-advance-requests/]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="methodNmae(java.lang.reflect.Method)[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:57 IST" name="methodNmae" finished-at="2021-04-07T10:28:57 IST" duration-ms="110" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void webapptestcases.CrmLoanApproval.magentoLoanSubmit() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodNmae -->
+        <test-method retried="true" signature="magentoLoanSubmit()[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:57 IST" name="magentoLoanSubmit" finished-at="2021-04-07T10:28:57 IST" duration-ms="67" status="SKIP">
+          <exception class="java.lang.Exception">
+            <message>
+              <![CDATA[Can not find sheetName: 'Module1' in file './TestData/WE_TestDataFile.xlsx' ]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Exception: Can not find sheetName: 'Module1' in file './TestData/WE_TestDataFile.xlsx' 
+at excelClasses.DataProviderReader.getTableArray(DataProviderReader.java:24)
+at excelClasses.ExcelUtils_SelGrid.setTestDataSelGrid(ExcelUtils_SelGrid.java:16)
+at excelClasses.ExcelDataLoader.getMenuByTitle(ExcelDataLoader.java:22)
+at excelClasses.MenuFactory.getMenuByTitle(MenuFactory.java:29)
+at excelClasses.MenuFactory.getModule1MenuByTitle(MenuFactory.java:41)
+at webapptestcases.CrmLoanApproval.magentoLoanSubmit(CrmLoanApproval.java:34)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:764)
+at org.testng.TestRunner.run(TestRunner.java:585)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+at org.testng.TestNG.runSuites(TestNG.java:1069)
+at org.testng.TestNG.run(TestNG.java:1037)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Exception -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- magentoLoanSubmit -->
+        <test-method is-config="true" signature="methodNmae(java.lang.reflect.Method)[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:57 IST" name="methodNmae" finished-at="2021-04-07T10:28:57 IST" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void webapptestcases.CrmLoanApproval.magentoLoanSubmit() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodNmae -->
+        <test-method signature="magentoLoanSubmit()[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:57 IST" name="magentoLoanSubmit" finished-at="2021-04-07T10:28:57 IST" duration-ms="18" status="FAIL">
+          <exception class="java.lang.Exception">
+            <message>
+              <![CDATA[Can not find sheetName: 'Module1' in file './TestData/WE_TestDataFile.xlsx' ]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Exception: Can not find sheetName: 'Module1' in file './TestData/WE_TestDataFile.xlsx' 
+at excelClasses.DataProviderReader.getTableArray(DataProviderReader.java:24)
+at excelClasses.ExcelUtils_SelGrid.setTestDataSelGrid(ExcelUtils_SelGrid.java:16)
+at excelClasses.ExcelDataLoader.getMenuByTitle(ExcelDataLoader.java:22)
+at excelClasses.MenuFactory.getMenuByTitle(MenuFactory.java:29)
+at excelClasses.MenuFactory.getModule1MenuByTitle(MenuFactory.java:41)
+at webapptestcases.CrmLoanApproval.magentoLoanSubmit(CrmLoanApproval.java:34)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:132)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:599)
+at org.testng.internal.TestInvoker.retryFailed(TestInvoker.java:214)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:58)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:822)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:764)
+at org.testng.TestRunner.run(TestRunner.java:585)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1218)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+at org.testng.TestNG.runSuites(TestNG.java:1069)
+at org.testng.TestNG.run(TestNG.java:1037)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Exception -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- magentoLoanSubmit -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:57 IST" name="tearDown" finished-at="2021-04-07T10:28:57 IST" duration-ms="427" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:webapptestcases.CrmLoanApproval@485966cc]" started-at="2021-04-07T10:28:57 IST" name="clearEnvironment" finished-at="2021-04-07T10:28:57 IST" duration-ms="104" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearEnvironment -->
+      </class> <!-- webapptestcases.CrmLoanApproval -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

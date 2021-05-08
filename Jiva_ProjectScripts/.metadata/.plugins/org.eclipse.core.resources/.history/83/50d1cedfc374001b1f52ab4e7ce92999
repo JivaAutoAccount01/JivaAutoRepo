@@ -1,0 +1,166 @@
+package magentoPortal;
+
+
+	
+
+
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class Webtable {
+
+	WebDriver driver;
+	@Test
+	public void tables() throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver","D:\\Jiva_PageObjectFW\\com.jiva\\src\\main\\resources\\drivers\\chromedriver.exe"); 	
+
+		// Instantiate a ChromeDriver class.       
+		driver=new ChromeDriver();
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	    driver.navigate().to("https://gaia-venture-qa.firebaseapp.com/inputs-advance-requests");  
+	    driver.manage().window().maximize();  
+	    Thread.sleep(5000);
+	    driver.findElement(By.id("mat-input-0")).sendKeys("mounika.lunavath@jiva.ag");
+	    driver.findElement(By.id("mat-input-1")).sendKeys("wPzCUEZvgDU9PXBiXDAHhvjp");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    
+	    
+	    int count =0;
+	    while(names()==false) {
+	    	System.out.println("Name is not availble, navigating to next page");	
+	    	WebElement nextPge= driver.findElement(By.xpath("//span[@class='mat-button-wrapper']"));
+			nextPge.click();
+			checkPageIsReady();
+			
+	 
+	    }
+	    count++;
+		
+		
+		/*
+		 * WebElement nxthome = driver.findElement(By.
+		 * xpath("//table[contains(@class,'mat-table cdk-table table ng-star-inserted')]/thead/tr[1]"
+		 * )); WebElement nextpg = driver.findElement(By.
+		 * xpath("//button[@class='mat-focus-indicator mat-button mat-button-base']"));
+		 * 
+		 * List<WebElement> brows= driver.findElements(By.
+		 * xpath("//table[contains(@class,'mat-table cdk-table table ng-star-inserted')]/tbody/tr"
+		 * ));
+		 * 
+		 * 
+		 * SearchFarmer:
+		 * 
+		 * for (WebElement element : brows){ String myText = element.getText();
+		 * 
+		 * if (myText.contains("Premkumar")) {
+		 * 
+		 * if(myText.contains("Pending123")) {
+		 * 
+		 * element.click(); Thread.sleep(30000);
+		 * 
+		 * WebElement saveelement = driver.findElement(By.
+		 * xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']"
+		 * )); js.executeScript("arguments[0].scrollIntoView(true);",saveelement);
+		 * 
+		 * driver.findElement(By.xpath("//div[@class='mat-select-arrow ng-tns-c105-4']")
+		 * ).click();
+		 * 
+		 * 
+		 * WebElement approve= driver.findElement(By.
+		 * xpath("//span[contains(@class,'mat-option-text') and text()='Approved']"));
+		 * 
+		 * approve.click();
+		 * 
+		 * break SearchFarmer;
+		 * 
+		 * } else {
+		 * 
+		 * System.out.println("Next Page");
+		 * js.executeScript("arguments[0].scrollIntoView(true);",nextpg);
+		 * Thread.sleep(3000); nextpg.click(); Thread.sleep(3000);
+		 * js.executeScript("arguments[0].scrollIntoView(true);",nxthome);
+		 * Thread.sleep(3000); }
+		 * 
+		 * 
+		 * } else {
+		 * 
+		 * System.out.println("Next Page");
+		 * js.executeScript("arguments[0].scrollIntoView(true);",nextpg);
+		 * Thread.sleep(3000); nextpg.click(); Thread.sleep(3000);
+		 * js.executeScript("arguments[0].scrollIntoView(true);",nxthome);
+		 * Thread.sleep(3000);
+		 * 
+		 * 
+		 * }
+		 * 
+		 * }
+		 */
+	}
+
+
+	public boolean names() throws InterruptedException {
+
+		boolean a = false;
+
+		List<WebElement> tabledata = driver
+				.findElements(By.xpath("//table[@class='mat-table cdk-table table ng-star-inserted']/tbody/tr"));
+		int total = tabledata.size();
+
+		for (int i = 1; i < total; i++) {
+			WebElement name = driver.findElement(
+					By.xpath("//table[@class='mat-table cdk-table table ng-star-inserted']/tbody/tr[" + i + "]/td[1]"));
+			WebElement status = driver.findElement(
+					By.xpath("//table[@class='mat-table cdk-table table ng-star-inserted']/tbody/tr[" + i + "]/td[6]"));
+			if (name.getText().contains("su su") && status.getText().contains("Pending")) {
+
+				a = true;
+				System.out.println("Selected " + name.getText() + "" + status.getText());
+				name.click();
+
+				break;
+			} else {
+				a = false;
+
+			}
+
+		}
+		return a;
+	}
+	
+	public void checkPageIsReady() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		// Initially below if condition will check ready state of page.
+		if (js.executeScript("return document.readyState").toString().equals("complete")) {
+			Thread.sleep(500);
+			System.out.println("Page loaded.");
+			return;
+		}
+		// This loop will iterate for 120 times to check If page Is ready after
+		// every 1second.
+		// We can replace the value 120 if we need to increase or decrease wait
+		// time.
+		for (int i = 0; i < 240; i++) {
+			try {
+				Thread.sleep(5000);
+				System.out.println("Waiting for page to load");
+			} catch (InterruptedException e) {
+			}
+			// To check page ready state.
+			if (js.executeScript("return document.readyState").toString().equals("complete")) {
+				break;
+			}
+		}
+	}
+	
+ }
