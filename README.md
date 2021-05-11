@@ -1,6 +1,6 @@
 ## Table of contents
 * [General info](#general-info)
-* [Tools & Technologies](#tools and technologies)
+* [Technologies](#technologies)
 * [Applications](#application)
 * [Setup](#setup)
 
@@ -8,7 +8,7 @@
 ## General info
 This Maven Project is created to perform the End TO End Automated Regression Testing for Jiva Applications.
 
-## Tools & Technologies
+##Technologies
 
 This Project is created with the following Tools & Technologies
 
