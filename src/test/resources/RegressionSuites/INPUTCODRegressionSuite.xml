@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="InPutCODRegressionSuite">
+
+	<suite-files>
+		<!--<suite-file path="src/test/resources/INPUTFlowTestSuites/FarmerNewRegistration.xml" /> 
+		<suite-file path="src/test/resources/MCAppSuites/McFarmerConnect.xml"/> 
+		 <suite-file path="src/test/resources/INPUTFlowTestSuites/FarmerItemRequest" /> -->
+		<suite-file path="src/test/resources/INPUTFlowTestSuites/MCCODOrderCreate.xml" />
+		<!-- <suite-file path="src/test/resources/INPUTFlowTestSuites/FarmerOrderAccept.xml" /> -->
+		<suite-file path="src/test/resources/INPUTFlowTestSuites/MagentoShipment.xml" />
+		<suite-file path="src/test/resources/INPUTFlowTestSuites/MCItemReceiveCOD.xml" />
+		<suite-file path="src/test/resources/INPUTFlowTestSuites/MCCODItemDelivery.xml" />
+		<suite-file path="src/test/resources/INPUTFlowTestSuites/MCINPUTCommissionChk.xml" />
+		<suite-file path="src/test/resources/INPUTFlowTestSuites/FarmerViewReceipt.xml" />
+
+	</suite-files>
+</suite>
