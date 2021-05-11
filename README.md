@@ -35,7 +35,7 @@ The following applications are automated in this E2E Regression Test Suite.
 
 ## Setup
 
-Install the necessory Tools 
-Clone this project into local and Import it into Eclipse or other Code Editors
-Use 'mvn test' to run the suites
+* Install the necessory Tools 
+* Clone this project into local and Import it into Eclipse or other Code Editors
+* Use 'mvn test' to run the suites
 
